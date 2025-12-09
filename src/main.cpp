@@ -1,8 +1,8 @@
-#include "display.cpp"
-#include "getInput.cpp"
-#include "heuristic.cpp"
-#include "loadGraph.cpp"
-#include "modifyGraph.cpp"
+#include "display.h"
+#include "getInput.h"
+#include "heuristic.h"
+#include "loadGraph.h"
+#include "modifyGraph.h"
 #include <Graph.h>
 #include <iostream>
 
@@ -13,11 +13,11 @@ int main() {
 
     Graph *g = loadGraph(path);
     Vertex *start = getStart(g);
-    Vertex *stop = getStop(g);
-    auto h = getHeuristic();
-    modifyGraph(g, h);
-    Waypoint *w = g->bfs(start, stop);
-    display2(w);
+    // Vertex *stop = getStop(g);
+    // auto h = getHeuristic();
+    // modifyGraph(g, h);
+    // Waypoint *w = g->bfs(start, stop);
+    // display2(w);
 
     // Vertex *sfo = new Vertex("San Francisco");
     // Vertex *nyc = new Vertex("New York");
