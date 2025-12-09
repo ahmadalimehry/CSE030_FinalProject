@@ -1,0 +1,13 @@
+sfo = "San Francisco"
+nyc = "New York"
+rio = "Rio De Janeiro"
+paris = "Paris"
+joburg = "Johannesburg"
+moscow = "Moscow"
+sydney = "Sydney"
+tokyo = "Tokyo"
+beijing = "Beijing"
+london = "London"
+la = "Los Angeles"
+"Los Angeles 2"
+

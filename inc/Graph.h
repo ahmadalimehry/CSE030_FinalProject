@@ -240,7 +240,6 @@ struct Graph {
                               << std::endl;
                     frontier.append(result->children[i]);
 
-
                     // Sort the frontier....
                     int j = frontier.size() - 1;
                     while (j > 0 && frontier.data[j]->partialCost >

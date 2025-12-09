@@ -14,6 +14,14 @@ protected:
     int capacity;
     T *data;
 
+    void copyToArr(T *out, int size) {
+        uint end = size < count ? size : count;
+
+        for (uint i = 0; i < end; i++) {
+            out[i] = data[i];
+        }
+    }
+
     void inflate() {
         capacity *= 2;
 
@@ -44,6 +52,11 @@ public:
     ArrayList() {
         count = 0;
         capacity = 1;
+        data = new T[capacity];
+    }
+    ArrayList(int initial_size) {
+        count = initial_size;
+        capacity = initial_size + 1;
         data = new T[capacity];
     }
 
@@ -180,6 +193,19 @@ public:
 
         return data[index];
     }
+    void resize(int new_size) {
+        if (new_size < capacity) {
+            count = new_size;
+        } else {
+            T *new_data = new T[new_size];
+            copyToArr(new_data, new_size);
+            T *old = data;
+            delete[] old;
+            data = new_data;
+            count = new_size;
+            capacity = new_size;
+        }
+    }
 
     int size() const { return count; }
 
@@ -198,6 +224,19 @@ public:
 
     friend struct TestArrayList;
     friend struct Graph;
+
+    struct Iterator {
+        T *ptr;
+        Iterator(T *p) { ptr = p; }
+        T operator*() { return *ptr; }
+        Iterator &operator++() {
+            ptr++;
+            return *this;
+        }
+        bool operator!=(Iterator other) const { return other.ptr != ptr; }
+    };
+    Iterator begin() const { return Iterator(data); }
+    Iterator end() const { return Iterator(data + count); }
 };
 
 template <class T>

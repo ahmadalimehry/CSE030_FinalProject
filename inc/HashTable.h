@@ -2,32 +2,28 @@
 #define HASH_TABLE_H
 
 #include <ArrayList.h>
-#include <type_traits>
 #include <cmath>
+#include <type_traits>
 
-template <class T> 
-class HashTable;
+template <class T> class HashTable;
 
 template <class T>
 std::ostream &operator<<(std::ostream &os, const HashTable<T> &ht);
 
-template <class T> 
-class HashTable {
+template <class T> class HashTable {
     ArrayList<ArrayList<T>> table;
     int capacity;
     int size;
 
-    int extractInt(int x) {
-        return x;
-    }
+    int extractInt(int x) { return x; }
 
     int extractInt(float x) {
         int result = 0;
 
-        unsigned char *c = (unsigned char*) &x;
+        unsigned char *c = (unsigned char *)&x;
 
         for (int i = 0; i < 4; i++) {
-            result += (int) *c * pow(256, i);
+            result += (int)*c * pow(256, i);
             c++;
         }
 
@@ -56,7 +52,7 @@ class HashTable {
         return key;
     }
 
-    void inflate(){
+    void inflate() {
         if (size / capacity >= 3) {
             // step 1: copy items into temp storage
             ArrayList<T> temp;
@@ -105,7 +101,7 @@ public:
         }
     }
 
-    void insert(T value){
+    void insert(T value) {
         int index = f(value);
         table[index].append(value);
         size++;
