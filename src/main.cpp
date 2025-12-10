@@ -9,10 +9,16 @@
 using namespace std;
 
 int main() {
+
+    Application app;
+    return app.run();
+    
     string path = "flights_data/one";
 
     Graph *g = loadGraph(path);
     Vertex *start = getStart(g);
+
+    
     // Vertex *stop = getStop(g);
     // auto h = getHeuristic();
     // modifyGraph(g, h);
