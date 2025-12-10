@@ -29,11 +29,15 @@ struct Edge {
     Vertex *from;
     Vertex *to;
     int weight;
+    int price; // added // 
+    int time; // added// 
 
-    Edge(Vertex *from, Vertex *to, int weight) {
+    Edge(Vertex *from, Vertex *to, int price, int time) {
         this->from = from;
         this->to = to;
-        this->weight = weight;
+        this->price = price; // added //
+        this->time = time; // added // 
+        this->weight = price;
     }
 };
 
@@ -61,8 +65,11 @@ struct Waypoint {
         for (int i = 0; i < vertex->edgeList.size(); i++) {
             Waypoint *temp = new Waypoint(vertex->edgeList[i]->to);
             temp->parent = this;
-            temp->weight = vertex->edgeList[i]->weight;
-            temp->partialCost = partialCost + vertex->edgeList[i]->weight;
+            // temp->weight = vertex->edgeList[i]->weight; changed 
+            int w = vertex->edgeList[i]->weight;
+            temp->weight = w;
+            // temp->partialCost = partialCost + vertex->edgeList[i]->weight; changed
+            temp->partialCost = partialCost + w;
             children.append(temp);
         }
     }
@@ -82,15 +89,34 @@ inline std::ostream &operator<<(std::ostream &os, Waypoint *wp) {
 struct Graph {
     ArrayList<Vertex *> vertices;
 
+    // Added//
+    void modifyWeights(int pref) {
+        for (int i = 0; i < vertices.size(); i++) {
+            Vertex* v = vertices[i];
+            for (int j = 0; j < v->edgeList.size(); j++) {
+                Edge* e = v->edgeList[j];
+                if (pref == 1) {
+                    e->weight = e->price;
+                } else if (pref == 2) {
+                    e->weight = e->time;
+                } else if (pref == 3) {
+                    e->weight = 1;
+                }
+            }
+        }
+    }
+    // Added //
+
+    
     void addVertex(Vertex *v) { vertices.append(v); }
 
-    void addEdge(Vertex *x, Vertex *y, int w) {
-        x->edgeList.append(new Edge(x, y, w));
-        y->edgeList.append(new Edge(y, x, w));
+    void addEdge(Vertex *x, Vertex *y, int price, int time) {
+        x->edgeList.append(new Edge(x, y, price, time)); // changed // 
+        y->edgeList.append(new Edge(y, x, price, time)); // changed // 
     }
 
-    void addDirectedEdge(Vertex *x, Vertex *y, int w) {
-        x->edgeList.append(new Edge(x, y, w));
+    void addDirectedEdge(Vertex *x, Vertex *y, int price, int time) {
+        x->edgeList.append(new Edge(x, y, price, time)); // changed //
     }
 
     Waypoint *bfs(Vertex *start, Vertex *destination) {
@@ -239,6 +265,7 @@ struct Graph {
                     std::cout << "Adding " << result->children[i]->vertex->data
                               << std::endl;
                     frontier.append(result->children[i]);
+
 
                     // Sort the frontier....
                     int j = frontier.size() - 1;
