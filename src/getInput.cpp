@@ -27,27 +27,40 @@ Heuristic getHeuristic() {
 
 Vertex *getStart(Graph *g) {
     Vertex *start;
-    bool found;
+    bool found = false;
 
-    std::string userStart = "";
-    std::cin >> userStart;
+    while(found == false){
+        std::string userStart = "";
+        std::cout << "Please enter your starting airport: ";
+        std::cin >> userStart;
 
-    for (int i = 0; i < g->vertices.size(); i++) {
-        if (g->vertices[i]->data == userStart) {
-            found = true;
-            start = g->vertices[i];
+        for(int i = 0; i < g->vertices.size(); i++){
+            if(g->vertices[i]->data == userStart){
+                found = true;
+                start = g->vertices[i];
+            }
         }
     }
 
-    if (found) {
-        std::cout << "Departing airport found" << std::endl;
-        return start;
-    } else {
-        std::cout << "Departing airport not found" << std::endl;
-        return nullptr;
-    }
-
-    return nullptr;
+    return start;
 }
 
-Vertex *getStop(Graph *g);
+Vertex *getStop(Graph *g){
+    Vertex* stop;
+    bool found = false;
+
+    while(found == false){
+        std::string userDest = "";
+        std::cout << "Please enter your destination: ";
+        std::cin >> userDest;
+
+        for(int i = 0; i < g->vertices.size(); i++){
+            if(g->vertices[i]->data == userDest){
+                found = true;
+                stop = g->vertices[i];
+            }
+        }
+    }
+
+    return stop;
+}
