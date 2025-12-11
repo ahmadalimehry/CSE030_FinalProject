@@ -10,13 +10,13 @@ using namespace std;
 
 int main() {
 
-    Application app;
-    return app.run();
+    // Application app;
+    // return app.run();
     
     string path = "flights_data/one";
 
     Graph *g = loadGraph(path);
-    Vertex *start = getStart(g);
+    // Vertex *start = getStart(g);
 
     
     // Vertex *stop = getStop(g);
@@ -76,6 +76,50 @@ int main() {
     // } else {
     //     cout << "There is no path" << endl;
     // }
+
+    clearScreen();
+    displayBanner();
+
+    bool running = true;
+    while (running) {
+        clearScreen();
+        showMenu();
+        int choice = getMenuChoice();
+
+        if (choice == 1) {
+            clearScreen();
+            displayAirports(g);
+            waitForEnter();
+        }
+        else if (choice == 2) {
+
+            clearScreen();
+            int startIdx = chooseAirports(g, "Enter starting airport index: ");
+            clearScreen();
+            int destIdx = chooseAirports(g, "Enter destination airport index: ");
+            clearScreen();
+            int pref = choosePreferences();
+
+            Waypoint* result = nullptr;
+
+            if (pref == 1) {
+                result = g->ucs(g->vertices[startIdx], g->vertices[destIdx]);
+            }
+            else if (pref == 2) {
+                result = g->ucs(g->vertices[startIdx], g->vertices[destIdx]);
+            }
+            else if (pref == 3) {
+                result = g->bfs(g->vertices[startIdx], g->vertices[destIdx]);
+            }
+
+            clearScreen();
+            displayRoute(result);
+            waitForEnter();
+        }
+        else {
+            running = false;
+        }
+    }
 
     return 0;
 }
