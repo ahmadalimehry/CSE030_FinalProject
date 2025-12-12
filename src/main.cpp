@@ -41,7 +41,7 @@ int main() {
             //     chooseAirports(g, "Enter destination airport index: ");
             // clearScreen();
             Heuristic pref = getHeuristic();
-            g->modifyWeights((int)pref);
+            g->modifyWeights(pref);
             Waypoint *result = g->ucs(start, stop);
             clearScreen();
             displayRoute(result);

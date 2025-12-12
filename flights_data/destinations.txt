@@ -9,5 +9,5 @@ tokyo = "Tokyo"
 beijing = "Beijing"
 london = "London"
 la = "Los Angeles"
-"Los Angeles 2"
+yyz = "Toronto"
 

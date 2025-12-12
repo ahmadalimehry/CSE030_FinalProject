@@ -5,3 +5,4 @@
 //"San Francisco","New York City",15,300
 //From,To,Hours,Dollars,Directional
 sfo,nyc,15,300,0
+la,yyz,6,250,0

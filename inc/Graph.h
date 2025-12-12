@@ -9,6 +9,7 @@
 #include <cstddef>
 #include <ostream>
 #include <string>
+#include "heuristic.h"
 
 struct Edge;
 
@@ -90,16 +91,16 @@ struct Graph {
     ArrayList<Vertex *> vertices;
 
     // Added//
-    void modifyWeights(int pref) {
+    void modifyWeights(Heuristic pref) {
         for (int i = 0; i < vertices.size(); i++) {
             Vertex* v = vertices[i];
             for (int j = 0; j < v->edgeList.size(); j++) {
                 Edge* e = v->edgeList[j];
-                if (pref == 1) {
+                if (pref == COST) {
                     e->weight = e->price;
-                } else if (pref == 2) {
+                } else if (pref == TIME) {
                     e->weight = e->time;
-                } else if (pref == 3) {
+                } else if (pref == STOPS) {
                     e->weight = 1;
                 }
             }

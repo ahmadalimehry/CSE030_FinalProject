@@ -1,5 +1,6 @@
 #include "getInput.h"
 #include <iostream>
+#include <stdexcept>
 using namespace std;
 
 Heuristic getHeuristic() {
@@ -30,18 +31,29 @@ Vertex *getStart(Graph *g) {
     bool found = false;
 
     while(found == false){
-        std::string userStart = "";
-        std::cout << "Please enter your starting airport: ";
+        int userStart ;
+        std::cout << "---------------------------------------------" << std::endl;
+        for(int i = 0; i < g->vertices.size(); i++){
+            std::cout << "(" << i << ") " << g->vertices[i]->data << std::endl;
+        }
+        std::cout << "(" << g->vertices.size() << ") Exit" << std::endl;
+        std::cout << "---------------------------------------------" << std::endl;
+        std::cout << "Enter the number of your starting city: ";
         std::cin >> userStart;
 
         for(int i = 0; i < g->vertices.size(); i++){
-            if(g->vertices[i]->data == userStart){
+            if(userStart == i){
                 found = true;
                 start = g->vertices[i];
+                break;
+            } else if(userStart == g->vertices.size()) {
+                throw std::logic_error("Going back to main menu");
+                found = true;
             }
         }
     }
 
+    std::cout << "Your starting point is: " << start->data << "." << std::endl;
     return start;
 }
 
@@ -50,17 +62,28 @@ Vertex *getStop(Graph *g){
     bool found = false;
 
     while(found == false){
-        std::string userDest = "";
-        std::cout << "Please enter your destination: ";
+        int userDest;
+        std::cout << "---------------------------------------------" << std::endl;
+        for(int i = 0; i < g->vertices.size(); i++){
+            std::cout << "(" << i << ") " << g->vertices[i]->data << endl; 
+        }
+        std::cout << "(" << g->vertices.size() << ") Exit" << std::endl;
+        std::cout << "---------------------------------------------" << std::endl;
+        std::cout << "Enter the number of your destination city: ";
         std::cin >> userDest;
 
         for(int i = 0; i < g->vertices.size(); i++){
-            if(g->vertices[i]->data == userDest){
+            if(userDest == i){
                 found = true;
                 stop = g->vertices[i];
+                break;
+            } else if(userDest == g->vertices.size()){
+                throw std::logic_error("Going back to main menu.");
+                found = true;
             }
         }
     }
 
+    std::cout << "Your destination is: " << stop->data << "." << std::endl;
     return stop;
 }
