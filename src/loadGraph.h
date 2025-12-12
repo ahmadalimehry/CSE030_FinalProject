@@ -189,9 +189,9 @@ Graph *loadGraph(std::string path) {
         Vertex *from = name_to_vert.get(aliases_to_names.get(s_from));
         Vertex *to = name_to_vert.get(aliases_to_names.get(s_to));
         if (bidirectional) {
-            g->addEdge(from, to, (int)hours);
+            g->addEdge(from, to, dollars, (int)hours);
         } else {
-            g->addDirectedEdge(from, to, (int)hours);
+            g->addDirectedEdge(from, to, dollars, (int)hours);
         }
     }
 

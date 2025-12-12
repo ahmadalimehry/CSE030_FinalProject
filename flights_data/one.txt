@@ -3,5 +3,5 @@
 //The "destinations.txt" file contains all valid destinations and aliases
 //sfo,nyc,15,300
 //"San Francisco","New York City",15,300
-//From,To,Hours,Dollars,Bidirectional
-sfo,nyc,15,300,1
+//From,To,Hours,Dollars,Directional
+sfo,nyc,15,300,0
