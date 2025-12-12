@@ -38,26 +38,27 @@ Heuristic getHeuristic() {
 Vertex *getStart(Graph *g) {
     Vertex *start;
     bool found = false;
+    int graphSize = g->vertices.size();
 
     while (found == false) {
         int userStart;
         std::cout << "---------------------------------------------"
                   << std::endl;
-        for (int i = 0; i < g->vertices.size(); i++) {
+        for (int i = 0; i < graphSize; i++) {
             std::cout << "(" << i << ") " << g->vertices[i]->data << std::endl;
         }
-        std::cout << "(" << g->vertices.size() << ") Exit" << std::endl;
+        std::cout << "(" << graphSize << ") Exit" << std::endl;
         std::cout << "---------------------------------------------"
                   << std::endl;
         std::cout << "Enter the number of your starting city: ";
         std::cin >> userStart;
 
-        for (int i = 0; i < g->vertices.size(); i++) {
+        for (int i = 0; i < graphSize; i++) {
             if (userStart == i) {
                 found = true;
                 start = g->vertices[i];
                 break;
-            } else if (userStart == g->vertices.size()) {
+            } else if (userStart == graphSize) {
                 throw GoToMainMenu();
                 found = true;
             }
@@ -71,26 +72,27 @@ Vertex *getStart(Graph *g) {
 Vertex *getStop(Graph *g) {
     Vertex *stop;
     bool found = false;
+    int graphSize = g->vertices.size();
 
     while (found == false) {
         int userDest;
         std::cout << "---------------------------------------------"
                   << std::endl;
-        for (int i = 0; i < g->vertices.size(); i++) {
+        for (int i = 0; i < graphSize; i++) {
             std::cout << "(" << i << ") " << g->vertices[i]->data << endl;
         }
-        std::cout << "(" << g->vertices.size() << ") Exit" << std::endl;
+        std::cout << "(" << graphSize << ") Exit" << std::endl;
         std::cout << "---------------------------------------------"
                   << std::endl;
         std::cout << "Enter the number of your destination city: ";
         std::cin >> userDest;
 
-        for (int i = 0; i < g->vertices.size(); i++) {
+        for (int i = 0; i < graphSize; i++) {
             if (userDest == i) {
                 found = true;
                 stop = g->vertices[i];
                 break;
-            } else if (userDest == g->vertices.size()) {
+            } else if (userDest == graphSize) {
                 throw GoToMainMenu();
                 found = true;
             }
