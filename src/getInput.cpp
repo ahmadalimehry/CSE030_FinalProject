@@ -3,15 +3,20 @@
 #include <stdexcept>
 using namespace std;
 
-Heuristic getHeuristic() {
+Heuristic getHeuristic() { 
     cout << "\nChoose a search preference:\n";
+    cout << "0. Back to main menu\n";
     cout << "1. Cheapest price\n";
     cout << "2. Shortest travel time\n";
     cout << "3. Least stops\n";
-    cout << "Enter choice (1-3): ";
+    cout << "Enter choice (0-3): ";
 
     int choice;
     cin >> choice;
+
+    if (choice == 0) {
+        throw std::logic_error("BACK");
+    }
 
     switch (choice) {
         case 1: return COST;
@@ -22,6 +27,7 @@ Heuristic getHeuristic() {
             return STOPS;
     }
 }
+
 
 
 
