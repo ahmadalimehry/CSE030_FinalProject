@@ -114,6 +114,7 @@ public:
         return table[index].search(value);
     }
 
+    int getSize() const { return size; }
     friend std::ostream &operator<< <>(std::ostream &os,
                                        const HashTable<T> &ht);
 

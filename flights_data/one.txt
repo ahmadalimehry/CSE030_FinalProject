@@ -1,8 +1,5 @@
 #use "destinations.txt"
-//This is a comment
-//The "destinations.txt" file contains all valid destinations and aliases
-//sfo,nyc,15,300
-//"San Francisco","New York City",15,300
+//#use directive only restricts possible locations and adds aliases
 //From,To,Hours,Dollars,Directional
 sfo,nyc,15,300,0
 la,yyz,6,250,0

@@ -1,0 +1,5 @@
+#use "destinations.txt"
+//From,To,Hours,Dollars,Directional
+0,1,15,300,0
+10,11,6,250,0
+0,9,6,250,0

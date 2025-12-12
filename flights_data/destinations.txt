@@ -10,4 +10,3 @@ beijing = "Beijing"
 london = "London"
 la = "Los Angeles"
 yyz = "Toronto"
-
