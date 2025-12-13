@@ -3,3 +3,11 @@
 //From,To,Hours,Dollars,Directional
 sfo,nyc,15,300,0
 la,yyz,6,250,0
+tokyo,beijing,7,150,0
+sydney,rio,21,400,1
+london,joburg,11,280,1
+london,nyc,7,320,0
+yyz,paris,8,260,0
+tokyo,paris,13,500,0
+tokyo,sydney,10,410,0
+beijing,moscow,12,200,0
