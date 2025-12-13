@@ -8,8 +8,9 @@ https://github.com/ahmadalimehry/CSE030_FinalProject
 ## Project Members
 - lgarciasanchez@ucmerced.edu  
 - johnolivas@ucmerced.edu  
-- aramirez435@ucmerced.edu  
-- amehry@ucmerced.edu  
+- aramirez435@ucmerced.edu 
+- amehry@ucmerced.edu
+- smora9@ucmerced.edu
 
 ---
 
