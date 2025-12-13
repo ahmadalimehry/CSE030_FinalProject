@@ -5,15 +5,6 @@ https://github.com/ahmadalimehry/CSE030_FinalProject
 
 ---
 
-## Project Members
-- lgarciasanchez@ucmerced.edu  
-- johnolivas@ucmerced.edu  
-- aramirez435@ucmerced.edu 
-- amehry@ucmerced.edu
-- smora9@ucmerced.edu
-
----
-
 ## Project Overview
 This project is a command-line program that allows users to plan air travel between different airports. Airports are represented as vertices in a graph, and direct flights between airports are represented as edges.
 
