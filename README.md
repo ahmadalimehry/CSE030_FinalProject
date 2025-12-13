@@ -43,14 +43,34 @@ The output includes:
 ## Implementation Details
 The project uses the Graph data structure provided in class.
 
-Uniform Cost Search (UCS) is used for:
+Flights may be searched by:
 - Cheapest price  
 - Shortest travel time  
-
-Breadth-First Search (BFS) is used for:
 - Least number of stops  
 
-Flight data (airports and routes) is loaded from external text files, making the graph easy to modify without changing the code.
+Flight data (airports and routes) is loaded from external CSV-like files, making data easy to modify without changing the code.
+
+Syntax for data files:
+- Directive:
+    - `#use "path"`
+        - `"path"` must point to a valid Definition file in the directory flights_data/
+- Comments:
+    - All files beginning with `//` are ignored and may be used as comments
+- CSV Portion
+    - Layout: ```<from>,<to>,<hours[int]>,<cost_dollars[int]>,<directional[0/1]>```
+    - `from` & `to`: Location Identifiers may be strings or aliases declared
+    - `hours` & `dollars`: Integers which denote their respective values
+    - `directional`: `0` if flights may go both ways, `1` if flights only go from `from` to `to`
+
+Syntax for Definition files:
+- Defines a small, declarative syntax for declaring string literals and assigning aliases to them.
+- 3 Types of Declarations:
+    - A standalone literal:
+        - ```"San Francisco"```
+    - Alias for literal:
+        - ```lax = "Los Angeles"``` The string literal is implicitly declared if it does not exist yet.
+    - Alias Copy:
+        - ```la = lax``` Creates a new alias for the value aliased by `lax`
 
 ---
 
@@ -58,6 +78,7 @@ Flight data (airports and routes) is loaded from external text files, making the
 Our project uses a command-line interface that allows user to:
 - View all airports  
 - Plan a flight  
+- Change flight data source
 - Return to the main menu or exit  
 
 
