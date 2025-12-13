@@ -9,10 +9,10 @@ using namespace std;
 
 Heuristic getHeuristic() {
     cout << "\nChoose a search preference:\n";
-    cout << "0. Back to main menu\n";
-    cout << "1. Cheapest price\n";
-    cout << "2. Shortest travel time\n";
-    cout << "3. Least stops\n";
+    cout << "  0) Back to main menu\n";
+    cout << "  1) Cheapest price\n";
+    cout << "  2) Shortest travel time\n";
+    cout << "  3) Least stops\n";
     cout << "Enter choice (0-3): ";
 
     int choice;
@@ -45,9 +45,9 @@ Vertex *getStart(Graph *g) {
         std::cout << "---------------------------------------------"
                   << std::endl;
         for (int i = 0; i < graphSize; i++) {
-            std::cout << "(" << i << ") " << g->vertices[i]->data << std::endl;
+            std::cout << "  " << i << ") " << g->vertices[i]->data << std::endl;
         }
-        std::cout << "(" << graphSize << ") Exit" << std::endl;
+        std::cout << "  " << graphSize << ") Exit to Main Menu" << std::endl;
         std::cout << "---------------------------------------------"
                   << std::endl;
         std::cout << "Enter the number of your starting city: ";
@@ -79,9 +79,9 @@ Vertex *getStop(Graph *g) {
         std::cout << "---------------------------------------------"
                   << std::endl;
         for (int i = 0; i < graphSize; i++) {
-            std::cout << "(" << i << ") " << g->vertices[i]->data << endl;
+            std::cout << "  " << i << ") " << g->vertices[i]->data << endl;
         }
-        std::cout << "(" << graphSize << ") Exit" << std::endl;
+        std::cout << "  " << graphSize << ") Exit to Main Menu" << std::endl;
         std::cout << "---------------------------------------------"
                   << std::endl;
         std::cout << "Enter the number of your destination city: ";

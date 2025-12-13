@@ -26,7 +26,7 @@ std::string CachedString::get() const { return str; }
 bool CachedString::reload() {
     if (!saveable)
         return false;
-    ifstream file(path);
+    ifstream file(path, std::ios::binary);
     if (!file)
         return false;
     char buffer[128];
@@ -34,6 +34,7 @@ bool CachedString::reload() {
     while (file.read(buffer, 128) || file.gcount() > 0) {
         new_string.append(buffer, file.gcount());
     }
+
     str = new_string;
     return true;
 }

@@ -2,6 +2,7 @@
 #define GRAPH_H
 
 #include "LinkedList.h"
+#include "heuristic.h"
 #include <ArrayList.h>
 #include <HashTable.h>
 #include <Queue.h>
@@ -9,7 +10,6 @@
 #include <cstddef>
 #include <ostream>
 #include <string>
-#include "heuristic.h"
 
 struct Edge;
 
@@ -30,14 +30,14 @@ struct Edge {
     Vertex *from;
     Vertex *to;
     int weight;
-    int price; // added // 
-    int time; // added// 
+    int price; // added //
+    int time;  // added//
 
     Edge(Vertex *from, Vertex *to, int price, int time) {
         this->from = from;
         this->to = to;
         this->price = price; // added //
-        this->time = time; // added // 
+        this->time = time;   // added //
         this->weight = price;
     }
 };
@@ -54,6 +54,8 @@ struct Waypoint {
     ArrayList<Waypoint *> children;
     int partialCost;
     int weight;
+    int dollars;
+    int time;
 
     Waypoint(Vertex *v) {
         parent = nullptr;
@@ -66,10 +68,13 @@ struct Waypoint {
         for (int i = 0; i < vertex->edgeList.size(); i++) {
             Waypoint *temp = new Waypoint(vertex->edgeList[i]->to);
             temp->parent = this;
-            // temp->weight = vertex->edgeList[i]->weight; changed 
+            // temp->weight = vertex->edgeList[i]->weight; changed
             int w = vertex->edgeList[i]->weight;
             temp->weight = w;
-            // temp->partialCost = partialCost + vertex->edgeList[i]->weight; changed
+            temp->dollars = dollars + vertex->edgeList[i]->price;
+            temp->time = time + vertex->edgeList[i]->time;
+            // temp->partialCost = partialCost + vertex->edgeList[i]->weight;
+            // changed
             temp->partialCost = partialCost + w;
             children.append(temp);
         }
@@ -93,9 +98,9 @@ struct Graph {
     // Added//
     void modifyWeights(Heuristic pref) {
         for (int i = 0; i < vertices.size(); i++) {
-            Vertex* v = vertices[i];
+            Vertex *v = vertices[i];
             for (int j = 0; j < v->edgeList.size(); j++) {
-                Edge* e = v->edgeList[j];
+                Edge *e = v->edgeList[j];
                 if (pref == COST) {
                     e->weight = e->price;
                 } else if (pref == TIME) {
@@ -108,12 +113,11 @@ struct Graph {
     }
     // Added //
 
-    
     void addVertex(Vertex *v) { vertices.append(v); }
 
     void addEdge(Vertex *x, Vertex *y, int price, int time) {
-        x->edgeList.append(new Edge(x, y, price, time)); // changed // 
-        y->edgeList.append(new Edge(y, x, price, time)); // changed // 
+        x->edgeList.append(new Edge(x, y, price, time)); // changed //
+        y->edgeList.append(new Edge(y, x, price, time)); // changed //
     }
 
     void addDirectedEdge(Vertex *x, Vertex *y, int price, int time) {
@@ -266,7 +270,6 @@ struct Graph {
                     std::cout << "Adding " << result->children[i]->vertex->data
                               << std::endl;
                     frontier.append(result->children[i]);
-
 
                     // Sort the frontier....
                     int j = frontier.size() - 1;

@@ -13,8 +13,6 @@ using namespace std;
 
 void clearScreen();
 
-int computeCost(Waypoint *end);
-
 void displayBanner();
 
 void showMenu();

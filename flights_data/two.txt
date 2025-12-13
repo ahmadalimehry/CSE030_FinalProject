@@ -1,5 +1,5 @@
 #use "destinations.txt"
-//From,To,Hours,Dollars,Directional
+//You can also index the locations by order in which they were defined in the #use file
 0,1,15,300,0
 10,11,6,250,0
 0,9,6,250,0

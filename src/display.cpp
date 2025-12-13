@@ -1,19 +1,9 @@
+#include "ArrayList.h"
 #include <display.h>
 using namespace std;
 
 void clearScreen() { cout << "\033[2J\033[1;1H"; }
 
-int computeCost(Waypoint *end) {
-    int cost = 0;
-    Waypoint *temp = end;
-
-    while (temp != nullptr) {
-        cost += temp->weight * 50; // price per hour
-        temp = temp->parent;
-    }
-
-    return cost;
-}
 
 void displayBanner() {
     cout << endl;
@@ -98,39 +88,42 @@ void displayRoute(Waypoint *end) {
 
     if (end == nullptr) {
         cout << "No route found." << endl;
+        cout << endl;
         cout << "==================================================" << endl;
         return;
     }
 
     ArrayList<Waypoint *> nodes;
+
     Waypoint *temp = end;
 
     while (temp != nullptr) {
-        nodes.append(temp);
+        nodes.prepend(temp);
         temp = temp->parent;
     }
-
-    int totalTime = end->partialCost;
+    
+    int totalTime = end->time;
+    int totalCost = end->dollars;
     int stops = nodes.size() - 1;
 
-    for (int i = nodes.size() - 1; i >= 0; i--) {
-        cout << nodes[i]->vertex->data;
+    if (stops>0) {
+        for (int i = 0; i < nodes.size()-1; i++) {
+            cout << nodes[i]->vertex->data;
 
-        if (i != 0) {
-            cout << "  -->  " << nodes[i - 1]->vertex->data << "  ("
-                 << nodes[i - 1]->weight << " hours)";
+            cout << "  -->  " << nodes[i+1]->vertex->data;
+
+            cout << endl;
         }
 
         cout << endl;
+        cout << "Total Travel Time: " << totalTime << " hours" << endl;
+        cout << "Total Cost:        $" << totalCost << endl;
+        cout << "Number of stops:   " << stops << endl;
+
+    } else {
+        cout << "Error. Origin and Destination are the same" << endl;
+        cout << endl;
     }
-
-    cout << endl;
-    cout << "Total Travel Time: " << totalTime << " hours" << endl;
-
-    int totalCost = computeCost(end);
-    cout << "Total Cost:        $" << totalCost << endl;
-    cout << "Number of stops:   " << stops << endl;
-
     cout << "==================================================" << endl;
 }
 

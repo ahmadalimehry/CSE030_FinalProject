@@ -29,8 +29,11 @@ int main() {
                 displayAirports(g);
                 waitForEnter();
             } else if (choice == 2) {
+                clearScreen();
                 Vertex *start = getStart(g);
+                clearScreen();
                 Vertex *stop = getStop(g);
+                clearScreen();
                 Heuristic pref = getHeuristic();
                 g->modifyWeights(pref);
                 Waypoint *result = g->ucs(start, stop);
